@@ -1,106 +1,151 @@
-/* ===========================
-   PAGE FADE TRANSITIONS
-=========================== */
-
+// ==========================================
+//  PAGE FADE-IN / FADE-OUT TRANSITIONS
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
-  document.body.style.opacity = 0;
-  document.body.style.transition = "opacity 0.6s ease";
+  // Initial fade-in
+  document.body.style.opacity = "0";
+  document.body.style.transition = "opacity 0.7s ease";
 
-  setTimeout(() => {
-    document.body.style.opacity = 1;
-  }, 100);
+  requestAnimationFrame(() => {
+    document.body.style.opacity = "1";
+  });
+
+  // Handle browser back/forward (better UX)
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) {
+      document.body.style.opacity = "1";
+    }
+  });
 });
 
-document.querySelectorAll("a").forEach((link) => {
-  if (link.href && link.hostname === window.location.hostname) {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      const href = this.href;
-      document.body.style.opacity = 0;
-      setTimeout(() => {
-        window.location.href = href;
-      }, 500);
-    });
-  }
-});
+document
+  .querySelectorAll('a[href^="/"], a[href^="."], a[href^="#"]')
+  .forEach((link) => {
+    // Only internal navigation
+    if (
+      link.hostname === window.location.hostname &&
+      !link.hasAttribute("data-no-transition")
+    ) {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (href === "#" || href === "#0") return; // skip anchors
 
-/* ===========================
-   SCROLL REVEAL ANIMATION
-=========================== */
+        e.preventDefault();
+        document.body.style.opacity = "0";
 
-const revealElements = document.querySelectorAll(".glass, h1, h2, p");
+        setTimeout(() => {
+          window.location.href = href;
+        }, 600);
+      });
+    }
+  });
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "translateY(0)";
-      }
-    });
-  },
-  { threshold: 0.1 },
+// ==========================================
+//  SCROLL REVEAL (staggered, more polished)
+// ==========================================
+const revealItems = document.querySelectorAll(
+  ".glass, h1, h2, h3, .project-card, section > *",
 );
 
-revealElements.forEach((el) => {
-  el.style.opacity = 0;
-  el.style.transform = "translateY(30px)";
-  el.style.transition = "all 0.8s ease";
-  observer.observe(el);
+const observerOptions = {
+  rootMargin: "0px 0px -10% 0px",
+  threshold: 0.1,
+};
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      const delay = index * 80; // stagger effect
+      entry.target.style.transitionDelay = `${delay}ms`;
+      entry.target.classList.add("revealed");
+      revealObserver.unobserve(entry.target); // one-time reveal
+    }
+  });
+}, observerOptions);
+
+revealItems.forEach((el) => {
+  el.classList.add("reveal-item");
+  revealObserver.observe(el);
 });
 
-/* ===========================
-   DYNAMIC GRADIENT SHIFT
-=========================== */
+// Add this to your CSS (you can move it there)
+const revealCSS = `
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+const styleSheet = document.createElement("style");
+styleSheet.textContent = revealCSS;
+document.head.appendChild(styleSheet);
 
-const colors = [
-  ["#a855f7", "#7c3aed", "#c084fc"],
-  ["#9333ea", "#6d28d9", "#a78bfa"],
-  ["#7e22ce", "#a855f7", "#d8b4fe"],
-];
+// ==========================================
+//  CURSOR GLOW – desktop only + lighter
+// ==========================================
+let cursorGlow = null;
 
-let current = 0;
+if (window.matchMedia("(pointer: fine)").matches) {
+  // mouse, not touch
+  cursorGlow = document.createElement("div");
+  cursorGlow.className = "cursor-glow";
+  document.body.appendChild(cursorGlow);
 
-setInterval(() => {
-  current = (current + 1) % colors.length;
-  document.documentElement.style.setProperty(
-    "--gradient",
-    `linear-gradient(90deg, ${colors[current][0]}, ${colors[current][1]}, ${colors[current][2]})`,
-  );
-}, 6000);
+  let rafPending = false;
+  document.addEventListener("mousemove", (e) => {
+    if (!rafPending) {
+      rafPending = true;
+      requestAnimationFrame(() => {
+        cursorGlow.style.left = e.clientX + "px";
+        cursorGlow.style.top = e.clientY + "px";
+        rafPending = false;
+      });
+    }
+  });
+}
 
-/* ===========================
-   CURSOR GLOW EFFECT
-=========================== */
+// Add to CSS (recommended – cleaner than inline)
+const glowCSS = `
+  .cursor-glow {
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(34, 211, 238, 0.12) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: opacity 0.4s ease;
+  }
+  @media (max-width: 768px) {
+    .cursor-glow { display: none; }
+  }
+`;
+const glowStyle = document.createElement("style");
+glowStyle.textContent = glowCSS;
+document.head.appendChild(glowStyle);
 
-const glow = document.createElement("div");
-glow.style.position = "fixed";
-glow.style.width = "400px";
-glow.style.height = "400px";
-glow.style.borderRadius = "50%";
-glow.style.pointerEvents = "none";
-glow.style.background =
-  "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 60%)";
-glow.style.transform = "translate(-50%, -50%)";
-glow.style.zIndex = "-1";
-document.body.appendChild(glow);
-
-document.addEventListener("mousemove", (e) => {
-  glow.style.left = e.clientX + "px";
-  glow.style.top = e.clientY + "px";
-});
-
-/* ===========================
-   BUTTON HOVER SCALE
-=========================== */
-
-document.querySelectorAll("button, a").forEach((el) => {
-  el.addEventListener("mouseenter", () => {
-    el.style.transform = "scale(1.05)";
-    el.style.transition = "all 0.3s ease";
+// ==========================================
+//  SELECTIVE HOVER SCALE (safer)
+// ==========================================
+document
+  .querySelectorAll(
+    ".btn-hover-scale, button:not([data-no-scale]), a:not(.nav-link):not([data-no-scale])",
+  )
+  .forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      el.style.transform = "scale(1.04)";
+    });
+    el.addEventListener("mouseleave", () => {
+      el.style.transform = "scale(1)";
+    });
   });
 
-  el.addEventListener("mouseleave", () => {
-    el.style.transform = "scale(1)";
-  });
-});
+// Optional: disable during scroll/touch on mobile
+if ("ontouchstart" in window) {
+  document.body.classList.add("touch-device");
+}

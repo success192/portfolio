@@ -45,13 +45,16 @@
     </style>
   </head>
 
-  <body class="text-white">
+  <body class="text-white min-h-screen">
     <!-- NAVBAR -->
-    <div class="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-      <div class="glass px-8 py-3 rounded-full flex gap-8 text-sm font-medium">
+    <div
+      class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[95%] sm:max-w-fit px-2 sm:px-0"
+    >
+      <div
+        class="glass px-5 sm:px-8 py-2.5 sm:py-3 rounded-full flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm font-medium"
+      >
         <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
         <a href="work.html" class="hover:text-cyan-400 transition">Work</a>
-
         <a href="about.html" class="hover:text-cyan-400 transition">About</a>
         <a href="blog.html" class="hover:text-cyan-400 transition">Blog</a>
         <a href="contact.html" class="hover:text-cyan-400 transition"
@@ -60,91 +63,119 @@
       </div>
     </div>
 
-    <section class="pt-40 px-8 md:px-20 max-w-6xl mx-auto">
-      <h1 class="text-5xl md:text-6xl font-extrabold mb-16">
+    <!-- SKILLS SECTION -->
+    <section
+      class="pt-32 sm:pt-40 px-5 sm:px-8 md:px-12 lg:px-20 max-w-7xl mx-auto"
+    >
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-12 sm:mb-16 text-center md:text-left"
+      >
         Skills & <span class="gradient-text">Expertise.</span>
       </h1>
 
-      <div class="grid md:grid-cols-2 gap-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
         <!-- FRONTEND -->
-        <div class="glass p-10 rounded-2xl">
-          <h2 class="text-2xl font-semibold mb-6">Frontend Engineering</h2>
-
-          <div class="flex flex-wrap gap-3">
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+        <div class="glass p-6 sm:p-8 md:p-10 rounded-2xl">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-5 sm:mb-6">
+            Frontend Engineering
+          </h2>
+          <div class="flex flex-wrap gap-2 sm:gap-3">
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >HTML</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >CSS</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >JavaScript</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >React</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Next.js</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >TypeScript</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Tailwind CSS</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >REST APIs</span
             >
           </div>
         </div>
 
         <!-- UI/UX -->
-        <div class="glass p-10 rounded-2xl">
-          <h2 class="text-2xl font-semibold mb-6">UI/UX & Product Design</h2>
-
-          <div class="flex flex-wrap gap-3">
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+        <div class="glass p-6 sm:p-8 md:p-10 rounded-2xl">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-5 sm:mb-6">
+            UI/UX & Product Design
+          </h2>
+          <div class="flex flex-wrap gap-2 sm:gap-3">
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Figma</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Wireframing</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Prototyping</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Design Systems</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >User Research</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Interaction Design</span
             >
           </div>
         </div>
 
         <!-- WEB3 -->
-        <div class="glass p-10 rounded-2xl md:col-span-2">
-          <h2 class="text-2xl font-semibold mb-6">Web3 Development</h2>
-
-          <div class="flex flex-wrap gap-3">
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+        <div class="glass p-6 sm:p-8 md:p-10 rounded-2xl md:col-span-2">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-5 sm:mb-6">
+            Web3 Development
+          </h2>
+          <div class="flex flex-wrap gap-2 sm:gap-3">
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Solidity</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Ethers.js</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Web3.js</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Smart Contracts</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Wallet Integration</span
             >
-            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+            <span
+              class="px-3 sm:px-4 py-1.5 sm:py-2 bg-cyan-600/20 rounded-full text-xs sm:text-sm"
               >Hardhat</span
             >
           </div>
@@ -152,9 +183,13 @@
       </div>
     </section>
 
-    <footer class="text-center text-sm text-gray-500 py-16">
+    <!-- FOOTER -->
+    <footer
+      class="text-center text-sm text-gray-500 py-12 sm:py-16 border-t border-cyan-900/30 mt-12 sm:mt-16"
+    >
       © 2026 Ezuka Success Ifeanyichukwu.
     </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
