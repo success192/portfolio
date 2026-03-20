@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Ezuka Success Ifeanyichukwu</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0a0a0f;
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #00f5d4, #0ea5e9, #22d3ee);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 6s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .glass {
+        background: rgba(14, 165, 233, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 245, 212, 0.2);
+      }
+    </style>
+  </head>
+
+  <body class="text-white">
+    <!-- NAVBAR -->
+    <div class="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+      <div class="glass px-8 py-3 rounded-full flex gap-8 text-sm font-medium">
+        <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+        <a href="work.html" class="hover:text-cyan-400 transition">Work</a>
+        <a href="skills.html" class="hover:text-cyan-400 transition">Skills</a>
+
+        <a href="blog.html" class="hover:text-cyan-400 transition">Blog</a>
+        <a href="contact.html" class="hover:text-cyan-400 transition"
+          >Contact</a
+        >
+      </div>
+    </div>
+
+    <section class="pt-40 px-8 md:px-20 max-w-6xl mx-auto">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-10">
+        About <span class="gradient-text">Me.</span>
+      </h1>
+
+      <p class="text-gray-400 leading-relaxed max-w-3xl mb-12">
+        I’m Ezuka Success Ifeanyichukwu — a frontend engineer, product designer,
+        and Web3 builder focused on crafting structured, scalable, and
+        user-centered digital products. I approach building with a systems
+        mindset. Every interface should feel intentional. Every interaction
+        should feel effortless. And every product should solve a real problem —
+        not just look good on a portfolio.
+      </p>
+
+      <p class="text-gray-400 leading-relaxed max-w-3xl mb-16">
+        Currently building independently while refining my craft in frontend
+        engineering, product design, and decentralized technologies. I believe
+        in positioning, clarity, and continuous improvement — because growth is
+        engineered, not accidental.
+      </p>
+
+      <!-- SERVICES -->
+      <h2 class="text-3xl font-bold mb-8">What I Do</h2>
+
+      <div class="grid md:grid-cols-2 gap-8 mb-20">
+        <div class="glass p-8 rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">SaaS Builder</h3>
+          <p class="text-gray-400">
+            I design and build scalable SaaS interfaces with clean architecture,
+            clear UX flow, and performance-focused frontend systems.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Web3 Builder</h3>
+          <p class="text-gray-400">
+            Creating user-friendly decentralized product interfaces that bridge
+            the gap between blockchain complexity and human usability.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Frontend Engineering</h3>
+          <p class="text-gray-400">
+            Building responsive, maintainable, and performance-optimized
+            frontend systems using modern stacks.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Product Design</h3>
+          <p class="text-gray-400">
+            Crafting intuitive user experiences backed by wireframing,
+            prototyping, and system-driven design thinking.
+          </p>
+        </div>
+      </div>
+
+      <!-- PERSONAL -->
+      <h2 class="text-3xl font-bold mb-8">Beyond Code</h2>
+
+      <p class="text-gray-400 max-w-3xl leading-relaxed mb-20">
+        Outside of building products, I enjoy exploring positioning strategies,
+        studying product systems, refining design aesthetics, and experimenting
+        with creative digital concepts. I’m deeply interested in growth — both
+        technically and personally — and I treat every project as a step toward
+        mastery. Ohh I'm also a big sports fan when not on my PC I'm on the
+        field of play touching grass 😂😂.
+      </p>
+    </section>
+
+    <footer class="text-center text-sm text-gray-500 pb-12">
+      © 2026 Ezuka Success Ifeanyichukwu.
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

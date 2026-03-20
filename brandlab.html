@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrandLab • Digital Identity Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap");
+      .tail-container {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .logo-font {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .hero-bg {
+        background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+      }
+      .mock-screen {
+        box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+      }
+    </style>
+  </head>
+  <body class="tail-container bg-zinc-950 text-zinc-100 min-h-screen">
+    <!-- NAVBAR -->
+    <nav class="border-b border-zinc-800 bg-zinc-950 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 bg-violet-600 rounded-xl flex items-center justify-center text-white font-bold text-xl logo-font"
+          >
+            B
+          </div>
+          <h1 class="text-2xl font-bold tracking-tighter logo-font">
+            BrandLab
+          </h1>
+        </div>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a
+            href="#"
+            onclick="switchTab(0)"
+            class="tab-link active text-violet-400"
+            >LOGOS</a
+          >
+          <a href="#" onclick="switchTab(1)" class="tab-link">TYPOGRAPHY</a>
+          <a href="#" onclick="switchTab(2)" class="tab-link">IDENTITY</a>
+          <a href="#" class="hover:text-zinc-400">EXPLORE</a>
+          <a href="#" class="hover:text-zinc-400">TEMPLATES</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button
+            onclick="randomizeAll()"
+            class="px-5 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-full text-sm flex items-center gap-2"
+          >
+            <i class="fa-solid fa-dice"></i>
+            <span class="hidden sm:inline">Randomize</span>
+          </button>
+          <button
+            onclick="exportBrand()"
+            class="px-6 py-2 bg-violet-600 hover:bg-violet-500 rounded-full font-semibold flex items-center gap-2"
+          >
+            <i class="fa-solid fa-download"></i> EXPORT KIT
+          </button>
+          <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden bg-zinc-900 border-t border-zinc-700 py-4 px-6"
+      >
+        <a
+          href="#"
+          class="block py-3 text-lg"
+          onclick="
+            switchTab(0);
+            toggleMobileMenu();
+          "
+          >LOGOS</a
+        >
+        <a
+          href="#"
+          class="block py-3 text-lg"
+          onclick="
+            switchTab(1);
+            toggleMobileMenu();
+          "
+          >TYPOGRAPHY</a
+        >
+        <a
+          href="#"
+          class="block py-3 text-lg"
+          onclick="
+            switchTab(2);
+            toggleMobileMenu();
+          "
+          >IDENTITY</a
+        >
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-bg pt-16 pb-12">
+      <div
+        class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <div class="space-y-6">
+          <div
+            class="inline-flex items-center gap-2 bg-zinc-800 px-4 py-1 rounded-full text-xs"
+          >
+            <div
+              class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
+            ></div>
+            47 new digital brands added this week
+          </div>
+          <h2
+            class="text-6xl md:text-7xl font-bold leading-none tracking-tighter logo-font"
+          >
+            Build digital-first<br />identities in seconds
+          </h2>
+          <p class="text-xl text-zinc-400 max-w-md">
+            Logo systems • Typography explorations • Full visual identity kits —
+            all interactive, responsive, and ready to ship.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button
+              onclick="startDemo()"
+              class="px-8 py-4 bg-white text-zinc-900 font-semibold rounded-2xl flex items-center gap-3 hover:scale-105 transition"
+            >
+              Launch BrandLab Studio
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button
+              onclick="watchVideo()"
+              class="px-8 py-4 border border-zinc-400 rounded-2xl flex items-center gap-3 hover:bg-zinc-800"
+            >
+              <i class="fa-solid fa-play"></i> 47s demo
+            </button>
+          </div>
+          <div class="flex items-center gap-6 text-xs text-zinc-500">
+            <div>✓ Fully responsive</div>
+            <div>✓ Real-time JS previews</div>
+            <div>✓ Export SVG + CSS</div>
+          </div>
+        </div>
+
+        <!-- LIVE PREVIEW CARD -->
+        <div class="relative">
+          <div
+            class="bg-zinc-900 border border-zinc-700 rounded-3xl overflow-hidden mock-screen"
+          >
+            <!-- Top bar -->
+            <div
+              class="bg-zinc-800 px-4 py-3 flex justify-between items-center"
+            >
+              <div class="flex gap-2">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-amber-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-emerald-500 rounded-full"></div>
+              </div>
+              <div class="text-xs font-mono text-zinc-400">
+                brandlab.app/preview • neonwave.studio
+              </div>
+              <select
+                id="brandSelect"
+                onchange="applyBrand()"
+                class="bg-zinc-700 text-xs px-3 py-1 rounded"
+              >
+                <option value="0">NeonWave</option>
+                <option value="1">PulseFit</option>
+                <option value="2">EchoAI</option>
+              </select>
+            </div>
+
+            <!-- Preview Content -->
+            <div class="p-6 bg-zinc-950">
+              <!-- Logo -->
+              <div id="previewLogo" class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center text-3xl font-bold text-white"
+                >
+                  NW
+                </div>
+                <div
+                  id="previewLogoText"
+                  class="text-3xl font-bold logo-font tracking-tighter"
+                >
+                  NEONWAVE
+                </div>
+              </div>
+
+              <!-- Typography -->
+              <div class="flex gap-3 mb-6">
+                <button
+                  onclick="changeFont(0)"
+                  class="preview-font-btn active px-3 py-1 text-sm bg-zinc-800"
+                >
+                  Inter
+                </button>
+                <button
+                  onclick="changeFont(1)"
+                  class="preview-font-btn px-3 py-1 text-sm"
+                >
+                  Space Grotesk
+                </button>
+                <button
+                  onclick="changeFont(2)"
+                  class="preview-font-btn px-3 py-1 text-sm"
+                >
+                  Monaspace
+                </button>
+              </div>
+
+              <!-- Tagline -->
+              <p id="previewTagline" class="text-2xl font-medium text-zinc-300">
+                "Future feels better in neon"
+              </p>
+
+              <!-- Colors -->
+              <div class="flex gap-3 mt-8">
+                <button
+                  onclick="setColor(0)"
+                  class="w-8 h-8 bg-pink-500 rounded-xl ring-2 ring-offset-2 ring-offset-zinc-950 ring-pink-400"
+                ></button>
+                <button
+                  onclick="setColor(1)"
+                  class="w-8 h-8 bg-cyan-400 rounded-xl"
+                ></button>
+                <button
+                  onclick="setColor(2)"
+                  class="w-8 h-8 bg-amber-400 rounded-xl"
+                ></button>
+              </div>
+            </div>
+
+            <!-- Bottom device frame -->
+            <div
+              class="bg-zinc-800 h-12 flex items-center justify-center gap-8 text-xs"
+            >
+              <i class="fa-solid fa-mobile-screen text-zinc-400"></i>
+              <i class="fa-solid fa-tablet-screen-button text-emerald-400"></i>
+              <i class="fa-solid fa-laptop text-zinc-400"></i>
+              <button
+                onclick="simulateExport()"
+                class="text-xs bg-emerald-500 px-4 py-1 rounded"
+              >
+                Live on all screens ✓
+              </button>
+            </div>
+          </div>
+
+          <!-- Floating badges -->
+          <div
+            class="absolute -top-4 -right-4 bg-zinc-800 px-4 py-1 rounded-2xl shadow-xl flex items-center gap-2 text-xs"
+          >
+            <span class="text-emerald-400">●</span> Responsive • JS Powered
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- TABS -->
+    <div class="max-w-7xl mx-auto px-6 py-6 border-b border-zinc-700">
+      <div class="flex border-b border-zinc-700 text-sm font-semibold">
+        <button
+          onclick="switchTab(0)"
+          id="tab0"
+          class="tab-btn px-8 py-3 border-b-2 border-violet-500 text-violet-400"
+        >
+          LOGO SYSTEMS
+        </button>
+        <button
+          onclick="switchTab(1)"
+          id="tab1"
+          class="tab-btn px-8 py-3 text-zinc-400"
+        >
+          TYPOGRAPHY
+        </button>
+        <button
+          onclick="switchTab(2)"
+          id="tab2"
+          class="tab-btn px-8 py-3 text-zinc-400"
+        >
+          VISUAL IDENTITY
+        </button>
+      </div>
+    </div>
+
+    <!-- CONTENT AREA -->
+    <div class="max-w-7xl mx-auto px-6 py-10">
+      <!-- LOGO TAB -->
+      <div id="content0" class="tab-content">
+        <h3 class="text-3xl font-semibold mb-6">
+          Logo Systems • 12 variants • Hover to animate
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <!-- Logo 1 -->
+          <div
+            onclick="selectLogo(this)"
+            class="logo-card bg-zinc-900 border border-zinc-700 p-6 rounded-3xl cursor-pointer hover:border-violet-400 transition group"
+          >
+            <div
+              class="h-20 flex items-center justify-center text-5xl font-black text-white group-hover:rotate-12 transition"
+            >
+              ⚡
+            </div>
+            <p class="text-center mt-4 font-bold">SparkCore</p>
+            <button class="mt-4 w-full py-2 bg-zinc-800 text-xs">
+              Apply • Export SVG
+            </button>
+          </div>
+          <!-- Logo 2 -->
+          <div
+            onclick="selectLogo(this)"
+            class="logo-card bg-zinc-900 border border-zinc-700 p-6 rounded-3xl cursor-pointer hover:border-violet-400 transition group"
+          >
+            <div class="h-20 flex items-center justify-center text-5xl">🌊</div>
+            <p class="text-center mt-4 font-bold">AquaShift</p>
+            <button class="mt-4 w-full py-2 bg-zinc-800 text-xs">
+              Apply • Export SVG
+            </button>
+          </div>
+          <!-- Logo 3 -->
+          <div
+            onclick="selectLogo(this)"
+            class="logo-card bg-zinc-900 border border-zinc-700 p-6 rounded-3xl cursor-pointer hover:border-violet-400 transition group"
+          >
+            <div
+              id="dynamicLogo"
+              class="h-20 flex items-center justify-center text-4xl font-bold bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent"
+            >
+              ECHO
+            </div>
+            <p class="text-center mt-4 font-bold">EchoAI • 3D variant</p>
+            <button
+              onclick="animateLogo()"
+              class="mt-4 w-full py-2 bg-emerald-500 text-xs"
+            >
+              3D Spin →
+            </button>
+          </div>
+          <!-- Logo 4 -->
+          <div
+            onclick="selectLogo(this)"
+            class="logo-card bg-zinc-900 border border-zinc-700 p-6 rounded-3xl cursor-pointer hover:border-violet-400 transition group"
+          >
+            <div class="h-20 flex items-center justify-center">📍</div>
+            <p class="text-center mt-4 font-bold">Locate</p>
+            <button class="mt-4 w-full py-2 bg-zinc-800 text-xs">Apply</button>
+          </div>
+        </div>
+        <button
+          onclick="addNewLogo()"
+          class="mt-8 block mx-auto px-10 py-3 border border-dashed border-zinc-400 text-zinc-400 hover:text-white"
+        >
+          + Generate new logo system with AI
+        </button>
+      </div>
+
+      <!-- TYPOGRAPHY TAB (hidden by default) -->
+      <div id="content1" class="tab-content hidden">
+        <h3
+          class="text-3xl font-semibold mb-6 flex justify-between items-center"
+        >
+          Typography Lab
+          <input
+            id="previewText"
+            value="The future is typed beautifully"
+            class="bg-zinc-800 px-4 py-2 text-sm w-96 rounded"
+            onkeyup="liveType()"
+          />
+        </h3>
+        <div class="flex flex-wrap gap-4">
+          <select
+            onchange="applyTypography(this)"
+            class="bg-zinc-800 px-4 py-3 rounded-xl"
+          >
+            <option>Weight: 400 → 900</option>
+            <option selected>Space Grotesk • 600</option>
+            <option>Monaspace Argon • Italic</option>
+          </select>
+          <button
+            onclick="changeWeight(700)"
+            class="px-6 py-3 bg-zinc-700 hover:bg-zinc-600"
+          >
+            BOLD
+          </button>
+          <button
+            onclick="changeWeight(400)"
+            class="px-6 py-3 bg-zinc-700 hover:bg-zinc-600"
+          >
+            REGULAR
+          </button>
+          <button
+            onclick="changeSize()"
+            class="px-6 py-3 bg-zinc-700 hover:bg-zinc-600"
+          >
+            ↑ Size
+          </button>
+          <div
+            id="typoPreview"
+            class="flex-1 bg-zinc-900 border border-zinc-700 p-6 text-3xl font-semibold leading-none"
+          >
+            The future is typed beautifully
+          </div>
+        </div>
+      </div>
+
+      <!-- IDENTITY TAB -->
+      <div id="content2" class="tab-content hidden">
+        <h3 class="text-3xl font-semibold mb-6">
+          Full Visual Identity Kit • Switch mockups
+        </h3>
+        <div class="flex gap-3 mb-6">
+          <button
+            onclick="switchMock(0)"
+            class="mock-tab active px-5 py-2 bg-zinc-800"
+          >
+            Mobile App
+          </button>
+          <button
+            onclick="switchMock(1)"
+            class="mock-tab px-5 py-2 bg-zinc-800"
+          >
+            Website Hero
+          </button>
+          <button
+            onclick="switchMock(2)"
+            class="mock-tab px-5 py-2 bg-zinc-800"
+          >
+            Social Post
+          </button>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div
+            class="mock-screen bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-700"
+          >
+            <div
+              class="h-96 bg-gradient-to-br from-pink-500 via-violet-500 to-cyan-400 flex items-center justify-center text-white text-4xl font-bold"
+              id="mockContent"
+            >
+              NEONWAVE<br />Dashboard
+            </div>
+            <div class="p-4 text-center text-xs">
+              iPhone 16 • Fully responsive
+            </div>
+          </div>
+          <div class="space-y-4">
+            <input
+              type="color"
+              id="colorPicker"
+              value="#c026d3"
+              class="w-full h-12"
+              onchange="liveColor(this)"
+            />
+            <button onclick="copyCSS()" class="w-full py-3 bg-zinc-800">
+              📋 Copy Tailwind + CSS
+            </button>
+            <button onclick="shareKit()" class="w-full py-3 bg-violet-600">
+              Share to Figma / Framer
+            </button>
+          </div>
+          <div class="text-xs space-y-3">
+            <div>✅ 100% responsive breakpoints simulated</div>
+            <div>✅ JS hover + click interactions</div>
+            <div>✅ Export ready (SVG, JSON, CSS vars)</div>
+            <button
+              class="block w-full py-6 bg-emerald-500 text-zinc-900 font-bold text-lg"
+              onclick="celebrate()"
+            >
+              SHIP THIS BRAND 🚀
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="mt-12 flex flex-wrap justify-center gap-4 text-sm">
+        <button onclick="toggleDark()" class="px-5 py-2 border rounded-full">
+          🌗 Toggle theme
+        </button>
+        <button onclick="showToast()" class="px-5 py-2 border rounded-full">
+          Show success toast
+        </button>
+        <button
+          onclick="randomizeAll()"
+          class="px-5 py-2 bg-orange-500 text-white rounded-full"
+        >
+          🎲 Full random demo
+        </button>
+        <button
+          onclick="window.location.reload()"
+          class="px-5 py-2 border rounded-full"
+        >
+          Reset project
+        </button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-900 border-t border-zinc-700 py-12">
+      <div class="max-w-7xl mx-auto px-6 text-center text-xs text-zinc-500">
+        <br />
+        <span class="text-emerald-400">BrandLab•March 2026</span>
+      </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div
+      id="toast"
+      class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 border border-emerald-400 text-emerald-400 px-6 py-3 rounded-2xl flex items-center gap-3 shadow-2xl"
+    >
+      <i class="fa-solid fa-check-circle"></i>
+      <span id="toastText"
+        >Brand kit exported as ZIP • neonwave-brandlab-v3.zip</span
+      >
+    </div>
+
+    <script>
+      // Tailwind script already loaded via CDN
+      function initTailwind() {
+        // Already works
+      }
+
+      // Tab switching
+      let currentTab = 0;
+      function switchTab(n) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((el) => el.classList.add("hidden"));
+        document.getElementById("content" + n).classList.remove("hidden");
+
+        document.querySelectorAll(".tab-btn").forEach((btn, i) => {
+          if (i === n)
+            btn.classList.add(
+              "border-b-2",
+              "border-violet-500",
+              "text-violet-400",
+            );
+          else
+            btn.classList.remove(
+              "border-b-2",
+              "border-violet-500",
+              "text-violet-400",
+            );
+        });
+        currentTab = n;
+      }
+
+      // Logo select
+      function selectLogo(el) {
+        document
+          .querySelectorAll(".logo-card")
+          .forEach((c) => (c.style.borderColor = "#3f3f46"));
+        el.style.borderColor = "#a855f7";
+        showToast("Logo applied to live preview");
+        document.getElementById("previewLogoText").textContent = el
+          .querySelector("p")
+          .textContent.toUpperCase();
+      }
+
+      function animateLogo() {
+        const logo = document.getElementById("dynamicLogo");
+        logo.style.transition = "all 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6)";
+        logo.style.transform = "rotate(360deg) scale(1.3)";
+        setTimeout(() => {
+          logo.style.transform = "rotate(0deg) scale(1)";
+        }, 800);
+        showToast("3D animation triggered");
+      }
+
+      function addNewLogo() {
+        alert(
+          "🤖 AI generated: 'Vortex' logo added to collection!\n\n(You can keep building on this template forever)",
+        );
+        const newCard = document.createElement("div");
+        newCard.className =
+          "logo-card bg-zinc-900 border border-emerald-400 p-6 rounded-3xl cursor-pointer";
+        newCard.innerHTML = `<div class="h-20 flex items-center justify-center text-5xl">🌀</div><p class="text-center mt-4 font-bold">Vortex • AI Generated</p>`;
+        document
+          .getElementById("content0")
+          .querySelector(".grid")
+          .appendChild(newCard);
+      }
+
+      // Typography
+      function liveType() {
+        const txt = document.getElementById("previewText").value;
+        document.getElementById("typoPreview").textContent = txt;
+      }
+      function changeWeight(w) {
+        document.getElementById("typoPreview").style.fontWeight = w;
+      }
+      function changeSize() {
+        const el = document.getElementById("typoPreview");
+        let size = parseInt(el.style.fontSize) || 30;
+        el.style.fontSize = size + 8 + "px";
+      }
+      function applyTypography(sel) {
+        showToast("Font family updated across all mockups");
+      }
+
+      // Mock switching
+      function switchMock(n) {
+        const texts = [
+          "NEONWAVE Mobile",
+          "Landing • 1440px",
+          "Instagram Story",
+        ];
+        document.getElementById("mockContent").innerHTML = texts[n];
+        document.querySelectorAll(".mock-tab").forEach((t, i) => {
+          t.classList.toggle("bg-violet-600", i === n);
+          t.classList.toggle("text-white", i === n);
+        });
+      }
+
+      // Color
+      function setColor(n) {
+        const colors = ["#ec4899", "#22d3ee", "#fbbf24"];
+        document.getElementById("previewLogo").style.background =
+          `linear-gradient(135deg, ${colors[n]}, #67e8f9)`;
+        showToast("Primary brand color updated");
+      }
+      function liveColor(picker) {
+        document.getElementById("mockContent").style.background =
+          `linear-gradient(to bottom right, ${picker.value}, #67e8f9)`;
+      }
+
+      // Preview brand select
+      function applyBrand() {
+        const val = document.getElementById("brandSelect").value;
+        const names = ["NEONWAVE", "PULSEFIT", "ECHO AI"];
+        document.getElementById("previewLogoText").textContent = names[val];
+        showToast("Brand switched • all previews updated");
+      }
+
+      function changeFont(n) {
+        document
+          .querySelectorAll(".preview-font-btn")
+          .forEach((b, i) => b.classList.toggle("active", i === n));
+        document.getElementById("previewTagline").style.fontFamily =
+          n === 2 ? "monospace" : "Space Grotesk";
+      }
+
+      // Global actions
+      function randomizeAll() {
+        document.getElementById("previewLogoText").textContent = "PULSEFIT";
+        document.getElementById("previewTagline").textContent =
+          "Sweat smarter. Feel stronger.";
+        showToast("🎲 Everything randomized beautifully");
+
+        // Fake logo rotation
+        const logos = document.querySelectorAll(".logo-card");
+        logos.forEach((l) => (l.style.transform = "rotate(5deg)"));
+        setTimeout(() => logos.forEach((l) => (l.style.transform = "")), 400);
+      }
+
+      function simulateExport() {
+        showToast("✅ Exported: brandlab-neonwave.zip • 4.8MB");
+      }
+
+      function exportBrand() {
+        alert(
+          "📥 Your complete brand kit has been downloaded!\n\nIncludes:\n• 8 SVG logos\n• CSS variables\n• Figma link\n• Responsive code",
+        );
+      }
+
+      function copyCSS() {
+        showToast("Tailwind + CSS copied to clipboard");
+      }
+
+      function shareKit() {
+        showToast("🔗 Link copied → opened in Framer");
+      }
+
+      function startDemo() {
+        alert(
+          "🚀 Welcome to BrandLab Studio!\n\nEverything you see is fully interactive.\nKeep clicking, changing, and building.",
+        );
+        switchTab(2);
+      }
+
+      function watchVideo() {
+        showToast("📹 Imagine a 47-second video of this exact page in action");
+      }
+
+      function toggleDark() {
+        document.documentElement.classList.toggle("dark");
+        showToast("Theme toggled (demo only)");
+      }
+
+      function showToast(msg = "Action completed") {
+        const toast = document.getElementById("toast");
+        document.getElementById("toastText").innerHTML = msg;
+        toast.classList.remove("hidden");
+        toast.style.transform = "translate(-50%, 0)";
+        setTimeout(() => {
+          toast.style.transform = "translate(-50%, 100px)";
+          setTimeout(() => toast.classList.add("hidden"), 500);
+        }, 2800);
+      }
+
+      function celebrate() {
+        const emojis = ["🚀", "🎉", "✨", "🌈"];
+        let i = 0;
+        const int = setInterval(() => {
+          showToast(emojis[i % 4] + " Brand successfully shipped!");
+          i++;
+          if (i > 7) clearInterval(int);
+        }, 300);
+      }
+
+      function toggleMobileMenu() {
+        document.getElementById("mobileMenu").classList.toggle("hidden");
+      }
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "r" && e.metaKey) {
+          e.preventDefault();
+          randomizeAll();
+        }
+        if (e.key === "1") switchTab(0);
+        if (e.key === "2") switchTab(1);
+        if (e.key === "3") switchTab(2);
+      });
+
+      // Boot the project
+      window.onload = () => {
+        initTailwind();
+        switchTab(0); // start on Logos
+        console.log(
+          "%c✅ BrandLab fully loaded and interactive! Enjoy building, Ify_nox 👩‍💻",
+          "color:#c026d3; font-size:14px",
+        );
+
+        // Demo auto animation
+        setTimeout(() => {
+          document.getElementById("dynamicLogo").style.transition = "all 1s";
+          document.getElementById("dynamicLogo").style.letterSpacing = "0.2em";
+        }, 1200);
+      };
+    </script>
+  </body>
+</html>

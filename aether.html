@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aether • Dev Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap");
+
+      :root {
+        --gradient-start: #7e22ce;
+        --gradient-mid: #a855f7;
+        --gradient-end: #ec4899;
+      }
+
+      .aether-bg {
+        background: linear-gradient(-45deg, #0a0a0a, #1a0f2e, #0a0a0a, #1a0f2e);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .hero-gradient {
+        background: linear-gradient(135deg, #7e22ce, #c084fc, #f472b6);
+        background-size: 300% 300%;
+        animation: heroPulse 8s ease infinite;
+      }
+
+      @keyframes heroPulse {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .nav-link {
+        position: relative;
+        transition: all 0.3s;
+      }
+
+      .nav-link:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: linear-gradient(to right, #c084fc, #f472b6);
+        transition: width 0.3s;
+      }
+
+      .nav-link:hover:after {
+        width: 100%;
+      }
+
+      .section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .project-card {
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .project-card:hover {
+        transform: scale(1.05) rotate(1deg);
+        box-shadow: 0 25px 50px -12px rgb(192 132 252 / 0.4);
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+      }
+    </style>
+  </head>
+  <body class="aether-bg text-white font-sans overflow-x-hidden">
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
+      <div
+        class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center font-bold text-xl"
+          >
+            A
+          </div>
+          <span
+            class="text-2xl font-semibold tracking-tighter"
+            style="font-family: &quot;Space Grotesk&quot;, sans-serif"
+            >Aether</span
+          >
+        </div>
+
+        <div class="hidden md:flex gap-8 text-sm font-medium">
+          <a href="#hero" class="nav-link cursor-pointer">HOME</a>
+          <a href="#about" class="nav-link cursor-pointer">ABOUT</a>
+          <a href="#skills" class="nav-link cursor-pointer">SKILLS</a>
+          <a href="#projects" class="nav-link cursor-pointer">PROJECTS</a>
+          <a href="#contact" class="nav-link cursor-pointer">CONTACT</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button onclick="toggleTheme()" class="text-xl">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button
+            onclick="downloadResume()"
+            class="px-5 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full text-sm font-medium flex items-center gap-2"
+          >
+            <i class="fas fa-download"></i> RESUME
+          </button>
+          <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden px-6 py-4 bg-black/90 border-t border-white/10"
+      >
+        <div class="flex flex-col gap-4 text-center">
+          <a href="#hero" onclick="toggleMobileMenu()" class="py-2">HOME</a>
+          <a href="#about" onclick="toggleMobileMenu()" class="py-2">ABOUT</a>
+          <a href="#skills" onclick="toggleMobileMenu()" class="py-2">SKILLS</a>
+          <a href="#projects" onclick="toggleMobileMenu()" class="py-2"
+            >PROJECTS</a
+          >
+          <a href="#contact" onclick="toggleMobileMenu()" class="py-2"
+            >CONTACT</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section
+      id="hero"
+      class="min-h-screen flex items-center hero-gradient relative overflow-hidden"
+    >
+      <div class="absolute inset-0 bg-black/40"></div>
+
+      <!-- Animated floating orbs -->
+      <div
+        class="absolute top-20 left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+      ></div>
+      <div
+        class="absolute bottom-40 right-32 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl animate-pulse"
+        style="animation-delay: 2s"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-6 pt-20 relative z-10">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <div
+              class="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-sm"
+            >
+              <div
+                class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
+              ></div>
+              AVAILABLE FOR FREELANCE • OPEN TO OPPORTUNITIES
+            </div>
+
+            <h1
+              class="text-6xl md:text-7xl font-bold leading-none tracking-tighter"
+              style="font-family: &quot;Space Grotesk&quot;, sans-serif"
+            >
+              Hi, I'm
+              <span
+                class="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400"
+                >Zuka</span
+              ><br />
+              Aether Architect
+            </h1>
+
+            <p class="text-xl text-gray-300 max-w-lg">
+              Building beautiful, performant digital experiences with code that
+              feels like magic. Currently crafting the future @ xAI-inspired
+              vibes.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+              <button
+                onclick="navigateTo('projects')"
+                class="px-8 py-4 bg-white text-black font-semibold rounded-2xl flex items-center gap-3 hover:scale-105 transition-all"
+              >
+                EXPLORE WORK <i class="fas fa-arrow-right"></i>
+              </button>
+
+              <button
+                onclick="navigateTo('contact')"
+                class="px-8 py-4 border-2 border-white/70 hover:bg-white/10 font-medium rounded-2xl transition-all"
+              >
+                LET'S BUILD TOGETHER
+              </button>
+            </div>
+
+            <div class="flex gap-6 text-3xl">
+              <a href="#" class="hover:text-violet-400 transition-colors"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="#" class="hover:text-violet-400 transition-colors"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="hover:text-violet-400 transition-colors"
+                ><i class="fab fa-x-twitter"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Floating Profile -->
+          <div class="relative flex justify-center">
+            <div
+              class="w-80 h-80 md:w-96 md:h-96 rounded-3xl overflow-hidden border-8 border-white/30 shadow-2xl"
+            >
+              <img
+                src="https://picsum.photos/id/64/600/600"
+                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                alt="Zuka"
+              />
+            </div>
+            <!-- Badge -->
+            <div
+              class="absolute -bottom-4 -right-4 bg-black border border-violet-400 text-xs px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2"
+            >
+              <span class="text-emerald-400">●</span>
+              Currently shipping v3.0
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div
+          class="absolute bottom-10 left-1/2 flex flex-col items-center gap-2 text-xs"
+        >
+          <div
+            class="w-px h-12 bg-gradient-to-b from-transparent via-white/50 to-transparent"
+          ></div>
+          SCROLL TO EXPLORE
+        </div>
+      </div>
+
+      <!-- Bottom fade -->
+      <div
+        class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-950 to-transparent"
+      ></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-5">
+          <h2 class="text-5xl font-bold mb-6">The story behind the pixels</h2>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            I'm a self-taught developer turned designer who believes interfaces
+            should feel alive. Started coding at 14, shipped my first SaaS at
+            17, now obsessed with micro-interactions, fluid animations and
+            developer experience that just feels right.
+          </p>
+          <div class="mt-8 flex gap-6">
+            <div class="flex-1">
+              <div class="text-4xl font-bold">4+</div>
+              <div class="text-sm text-gray-400">YEARS BUILDING</div>
+            </div>
+            <div class="flex-1">
+              <div class="text-4xl font-bold">27</div>
+              <div class="text-sm text-gray-400">PROJECTS SHIPPED</div>
+            </div>
+            <div class="flex-1">
+              <div class="text-4xl font-bold">∞</div>
+              <div class="text-sm text-gray-400">CUPS OF COFFEE</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:col-span-7 glass p-8 rounded-3xl border border-white/10">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="space-y-6">
+              <div class="flex gap-3">
+                <i class="fas fa-rocket text-3xl text-violet-400"></i>
+                <div>
+                  <div class="font-semibold">Passion</div>
+                  <div class="text-sm text-gray-400">
+                    Turning coffee into code &amp; code into delight
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <i class="fas fa-heart text-3xl text-pink-400"></i>
+                <div>
+                  <div class="font-semibold">Values</div>
+                  <div class="text-sm text-gray-400">
+                    Accessibility • Performance • Joy
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-l border-white/20 pl-6">
+              <p class="italic text-gray-300">
+                "The best interfaces disappear. You just feel the magic."
+              </p>
+              <div class="mt-4 text-sm font-medium">— Zuka • 2026</div>
+            </div>
+          </div>
+          <button
+            onclick="navigateTo('contact')"
+            class="mt-8 w-full py-4 bg-gradient-to-r from-violet-500 to-pink-500 rounded-2xl font-semibold hover:brightness-110 transition-all"
+          >
+            READ FULL MANIFESTO →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-24 bg-black/40">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-center text-4xl font-bold mb-12">
+          Tools that spark joy
+        </h2>
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-6">
+          <div
+            class="glass p-6 rounded-2xl text-center hover:scale-110 transition-transform"
+          >
+            Tailwind
+          </div>
+          <div
+            class="glass p-6 rounded-2xl text-center hover:scale-110 transition-transform"
+          >
+            Next.js 15
+          </div>
+          <div
+            class="glass p-6 rounded-2xl text-center hover:scale-110 transition-transform"
+          >
+            Framer Motion
+          </div>
+          <div
+            class="glass p-6 rounded-2xl text-center hover:scale-110 transition-transform"
+          >
+            Three.js
+          </div>
+          <div
+            class="glass p-6 rounded-2xl text-center hover:scale-110 transition-transform"
+          >
+            Figma → Code
+          </div>
+          <div
+            class="glass p-6 rounded-2xl text-center hover:scale-110 transition-transform"
+          >
+            Vanilla Magic ✨
+          </div>
+        </div>
+        <div class="text-center mt-10 text-sm opacity-60">
+          + 47 more that I'm too humble to list here
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24 max-w-7xl mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-12">Featured Creations</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div
+          class="project-card glass border border-white/10 rounded-3xl overflow-hidden"
+        >
+          <div
+            class="h-48 bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-6xl"
+          >
+            🌌
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold">Nexus UI Kit • 2026</h3>
+            <p class="text-sm text-gray-400">
+              60+ component library with built-in gradient engine
+            </p>
+            <button
+              onclick="viewProject(1)"
+              class="mt-4 text-violet-400 hover:underline"
+            >
+              View case study →
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div
+          class="project-card glass border border-white/10 rounded-3xl overflow-hidden"
+        >
+          <div
+            class="h-48 bg-gradient-to-br from-pink-500 to-orange-400 flex items-center justify-center text-6xl"
+          >
+            ⚡
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold">Spark • Lightning Fast SaaS Dashboard</h3>
+            <p class="text-sm text-gray-400">
+              Built in 9 days, 100% vanilla + Tailwind
+            </p>
+            <button
+              onclick="viewProject(2)"
+              class="mt-4 text-violet-400 hover:underline"
+            >
+              Live demo + code
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div
+          class="project-card glass border border-white/10 rounded-3xl overflow-hidden"
+        >
+          <div
+            class="h-48 bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center text-6xl"
+          >
+            🌀
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold">Aether Portfolio v2.0 (this one!)</h3>
+            <p class="text-sm text-gray-400">
+              Modular • Fully animated • Under 12 KB gzipped
+            </p>
+            <button
+              onclick="alert('You are already here! ✨')"
+              class="mt-4 text-violet-400 hover:underline"
+            >
+              Fork on GitHub
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-10">
+        <button
+          onclick="navigateTo('contact')"
+          class="px-10 py-3 border border-dashed border-white/50 hover:border-white text-sm uppercase tracking-widest"
+        >
+          SEE ALL 27 PROJECTS →
+        </button>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 bg-zinc-950">
+      <div class="max-w-2xl mx-auto px-6 text-center">
+        <h2 class="text-5xl font-bold mb-6">
+          Let's create something legendary
+        </h2>
+        <p class="text-xl mb-8">
+          Drop me a message and I'll reply within the hour (unless I'm in flow
+          state ☕)
+        </p>
+
+        <form class="space-y-6">
+          <input
+            type="text"
+            placeholder="Your name"
+            class="w-full px-6 py-4 bg-white/5 border border-white/30 rounded-2xl focus:outline-none focus:border-violet-400"
+          />
+          <input
+            type="email"
+            placeholder="hello@yourdomain.com"
+            class="w-full px-6 py-4 bg-white/5 border border-white/30 rounded-2xl focus:outline-none focus:border-violet-400"
+          />
+          <textarea
+            placeholder="Tell me about your dream project..."
+            rows="5"
+            class="w-full px-6 py-4 bg-white/5 border border-white/30 rounded-2xl focus:outline-none focus:border-violet-400"
+          ></textarea>
+
+          <button
+            onclick="submitForm(event)"
+            class="w-full py-5 bg-gradient-to-r from-violet-600 to-pink-600 text-lg font-semibold rounded-3xl hover:scale-105 transition-all"
+          >
+            SEND MESSAGE INTO THE AETHER ✨
+          </button>
+        </form>
+
+        <div class="mt-8 text-sm opacity-60">
+          or just email me → zuka@aether.dev
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="border-t border-white/10 py-12 text-center text-xs text-gray-400"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <div>
+          © 2026 Aether Portfolio • Built with pure love &amp; Tailwind +
+          Vanilla JS
+        </div>
+        <div class="flex gap-6">
+          <button
+            onclick="
+              alert(
+                'Thank you! ❤️ You just triggered a confetti explosion in the real version.',
+              )
+            "
+          >
+            Made with ❤️
+          </button>
+          <button onclick="window.location.reload()">Reset demo</button>
+        </div>
+        <div>Made in 15 minutes • Fully modular &amp; ready to fork</div>
+      </div>
+    </footer>
+
+    <script>
+      // Tailwind script already loaded via CDN
+
+      function initTailwind() {
+        // Already initialized by CDN
+      }
+
+      // Smooth scroll + active nav
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          if (this.getAttribute("href") === "#") return;
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          target.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      // Animate sections on scroll
+      function observeSections() {
+        const sections = document.querySelectorAll(
+          ".section, #about, #skills, #projects",
+        );
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.2 },
+        );
+
+        sections.forEach((sec) => {
+          sec.classList.add("section");
+          observer.observe(sec);
+        });
+      }
+
+      // Navigation helper
+      window.navigateTo = function (section) {
+        document.getElementById(section).scrollIntoView({ behavior: "smooth" });
+
+        // Fake page transition flash
+        document.body.style.transition = "filter 0.4s";
+        document.body.style.filter = "brightness(1.3)";
+        setTimeout(() => {
+          document.body.style.filter = "none";
+        }, 400);
+      };
+
+      // View project demo
+      window.viewProject = function (n) {
+        const messages = [
+          "🔥 Opening Notion case study...",
+          "🚀 Redirecting to live Vercel demo...",
+          "✨ Loading GitHub repo (fork it!)",
+        ];
+        alert(messages[n - 1]);
+      };
+
+      window.submitForm = function (e) {
+        e.preventDefault();
+        alert(
+          "✅ Message received! ✨\n\nIn the real version this would send to your email + add to Notion DB.\n\nYou are awesome for reaching this far ❤️",
+        );
+      };
+
+      window.downloadResume = function () {
+        alert(
+          "📄 Resume downloaded! (In real version: PDF opens with beautiful gradients)",
+        );
+      };
+
+      window.toggleTheme = function () {
+        alert(
+          "🌗 Dark/Light toggle activated (this portfolio is permanently cosmic anyway)",
+        );
+      };
+
+      window.toggleMobileMenu = function () {
+        const menu = document.getElementById("mobileMenu");
+        menu.classList.toggle("hidden");
+      };
+
+      // Keyboard easter egg
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "r" && e.ctrlKey) {
+          alert("🔄 Portfolio refreshed with extra sparkle ✨");
+          location.reload();
+        }
+      });
+
+      // Init everything
+      window.onload = function () {
+        initTailwind();
+        observeSections();
+
+        // Make hero text pop
+        console.log(
+          "%c🚀 Aether Portfolio loaded successfully!\nBuilt exactly as requested in one HTML file.\nCopy → paste → customize → ship!",
+          "color:#c084fc; font-size:14px; font-family:monospace",
+        );
+
+        // Bonus: Click anywhere on hero to spawn floating emoji (fun demo)
+        document.getElementById("hero").addEventListener("click", (e) => {
+          if (Math.random() > 0.7) {
+            const emoji = document.createElement("div");
+            emoji.textContent = "✨";
+            emoji.style.position = "absolute";
+            emoji.style.left = e.offsetX + "px";
+            emoji.style.top = e.offsetY + "px";
+            emoji.style.fontSize = "30px";
+            emoji.style.pointerEvents = "none";
+            emoji.style.transition = "all 1.5s";
+            document.getElementById("hero").appendChild(emoji);
+
+            setTimeout(() => {
+              emoji.style.transform = "translateY(-150px)";
+              emoji.style.opacity = "0";
+            }, 10);
+
+            setTimeout(() => emoji.remove(), 2000);
+          }
+        });
+
+        // Auto make first project card glow
+        setTimeout(() => {
+          document.querySelector(".project-card").style.boxShadow =
+            "0 0 60px #c084fc";
+        }, 1200);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work | Ezuka Success Ifeanyichukwu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+       
+    body {
+        background: linear-gradient(90deg,#0a0a0f,#0c111b,#0a0a0f,#0c111b); 
+        background-size: 400% 400%;
+        animation: gradientBG 12s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .glass {
+        background: rgba(14, 165, 233, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 245, 212, 0.2);
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#0c111b] text-white font-sans">
+    <!-- NAVBAR -->
+    <header
+    <div class="fixed top-3 left-1/2 -translate-x-1/2 z-50">
+      <div class="glass px-8 py-3 rounded-full flex gap-8 text-sm font-medium">
+        <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+        <a href="skills.html" class="hover:text-cyan-400 transition">Skills</a>
+        <a href="about.html" class="hover:text-cyan-400 transition">About</a>
+        <a href="blog.html" class="hover:text-cyan-400 transition">Blog</a>
+        <a href="contact.html" class="hover:text-cyan-400 transition"
+          >Contact</a
+        >
+      </div>
+    </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="text-center py-20 px-6">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Selected Projects</h2>
+      <p class="max-w-2xl mx-auto text-white-200">
+        A blend of frontend development, UI/UX design and product thinking.
+        Every project reflects clarity, structure and intentional design.
+      </p>
+    </section>
+
+    <!-- PROJECT GRID -->
+    <section class="px-6 pb-24">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- PROJECT CARD -->
+<div class="glass p-6 rounded-2xl hover:-translate-y-2
+hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition duration-300">
+<img
+  src="assets/images/NaijaEats.jpg.png"
+  alt="Naija-Eats Project Cover"
+  class="rounded-lg mb-5 h-48 w-full object-cover"
+/>
+
+<h3 class="text-2xl font-semibold gradient-text mb-3">NaijaEats</h3>
+<p class="text-white-300 mb-4">
+  A responsive food ordering platform featuring authentication flow,
+  live order tracking simulation, dark mode, and persistent cart state.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+  <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    HTML
+  </span>
+    <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Tailwind
+  </span>
+    <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Javascript
+  </span>
+</div>
+<div class="flex gap-6 mt-4">
+  <a href="naija-eats.html"
+  class="px-4 py-2 rounded-lg bg-cyan-500 text-white
+  hover:shadow-[0_0_15px_rgba(34,211,238,0.6)]
+  transition duration-300">Live Demo</a>
+</div>
+</div>
+
+        <!-- PROJECT CARD -->
+<div class="glass p-6 rounded-2xl hover:-translate-y-2
+hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]
+transition duration-300">
+<img
+  src="assets/images/Haple.png"
+  alt="Haple Marketplace Project Cover"
+  class="rounded-lg mb-5 h-48 w-full object-cover"
+/>
+<h3 class="text-2xl font-semibold gradient-text mb-3">Haple Marketplace</h3>
+<p class="text-white-300 mb-4">
+  A SaaS landing page concept for a 
+  student marketplace platform featuring buyer and seller onboarding flows,
+  designed with strong attention to UI  hierachy, spacing, and conversion-focused layout structure.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+  <span class="px-3 py-1 bg-blue-500/45
+  text-white-400 rounded-full text-xs"> HTML</span>
+    <span class="px-3 py-1 bg-blue-500/45
+  text-white-400 rounded-full text-xs"> Tailwind</span>
+</div>
+<a href="haple.html"
+class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-400
+text-white text-sm hover:opacity-90 transition">
+Live Demo</a>
+</div>
+
+        <!-- PROJECT CARD -->
+<div class="glass p-6 rounded-2xl hover:-translate-y-2
+hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition duration-300">
+<img
+  src="assets/images/Aether.png"
+  alt="Aether Portfolio Project Cover"
+  class="rounded-lg mb-5 h-48 w-full object-cover"/>
+<h3 class="text-2xl font-semibold gradient-text mb-3">Aether Portfolio</h3>
+<p class="text-white-300 mb-4">
+  A modular developer portfolio featuring animated gradients, smooth page
+  transitions, and a scalable layout architecture built with HTML,
+  Tailwind CSS, and Vanilla Javascript.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+  <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    HTML
+  </span>
+    <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Tailwind
+  </span>
+    <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Javascript
+  </span>
+</div>
+<div class="flex gap-6 mt-4">
+<a href="aether.html"
+class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-400
+text-white text-sm hover:opacity-90 transition">
+Live Demo</a>
+</div>
+</div>
+        <!-- PROJECT CARD -->
+<div class="glass p-6 rounded-2xl
+hover:-translate-y-2
+hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]
+transtion duartion-300">
+<img
+  src="assets/images/PulseMail.png"
+  alt="PulseMail Template Project Cover"
+  class="rounded-lg mb-5 h-48 w-full object-cover"/>
+<h3 class="text-2xl font-semibold gradient-text mb-3">
+  PulseMail
+</h3>
+<p class="text-white-300 mb-4">
+  A collection of conversion-focused email marketing templates designed
+  with structured copywriting and strategic layout principles to improve 
+  engagement and click-through rates.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+  <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    HTML Email
+  </span>
+    <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Responsive Design
+  </span>
+    <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Marketing UX
+  </span>
+</div>
+<a href="pulsemail.html"
+class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-400
+text-white text-sm hover:opacity-90 transition">
+View Designs</a>
+</div>
+
+        <!-- PROJECT CARD -->
+<div class="glass p-6 rounded-2xl
+hover:-translate-y-2
+hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]
+transtion duartion-300">
+<img
+  src="assets/images/ChainFlow.png"
+  alt="ChainFlow Web3 Product Interface Project Cover"
+  class="rounded-lg mb-5 h-48 w-full object-cover"/>
+<h3 class="text-2xl font-semibold gradient-text mb-3">
+  ChainFlow-Web3 Product Interface
+</h3>
+<p class="text-white-300 mb-4">
+  A Web3 product design concept exploring interface patterns for decentralized
+  platforms with emphasis on clarity, trust and simplified blockchain interactions.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+  <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Figma 
+  </span>
+    <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Product Design
+  </span>
+    <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+    Web3 UX
+  </span>
+</div>
+<a href="chainflow.html"
+class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-400
+text-white text-sm hover:opacity-90 transition">
+View Prototype</a>
+</div>
+
+        <!-- PROJECT CARD -->
+<div class="glass p-6 rounded-2xl
+hover:-translate-y-2
+hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]
+transtion duartion-300">
+<img
+src="assets/images/brandlab.png"
+alt="BrandLab Project Cover"
+class="rounded-lg mb-6 h-48 w-full object-cover"/>
+<h3 class="text-2xl font-semibold gradient-text mb-3">
+  BrandLab
+</h3>
+      <p class="text-white-300 text-sm mb-4">
+        Logo Systems, typography explorations and visual identity systems designed for
+        digital-first brands.
+      </p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+          Logo Design
+        </span>
+        <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+          Visual Identity
+        </span>
+        <span class="px-3 py-1 bg-blue-500/45 text-white-400 rounded-full text-xs">
+          Typography
+        </span>
+      </div>
+      <a href="brandlab.html"
+class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-400
+text-white text-sm hover:opacity-90 transition">
+View Work</a>
+</div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center pb-20">
+      <h3 class="text-2xl font-semibold mb-4">
+        Want to build something structured & premium?
+      </h3>
+
+      
+      <a
+        href="contact.html"
+        class="px-6 py-3 bg-white text-cyan-700 font-semibold rounded-full hover:scale-105 transition"
+      >
+        Let’s Work Together
+      </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-sm text-cyan-200 pb-8">
+      © 2026 Ezuka Success Ifeanyichukwu. Built with precision.
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

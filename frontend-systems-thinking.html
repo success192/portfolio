@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Frontend Systems Thinking</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0a0a0f;
+      }
+
+      .hero {
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .hero img {
+        transition: transform 0.4s ease;
+      }
+
+      .hero:hover img {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+
+  <body class="text-white">
+    <div
+      id="progress-bar"
+      class="fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 w-0 z-50"
+    ></div>
+
+    <section class="max-w-3xl mx-auto px-6 pt-32 pb-24">
+      <a href="blog.html" class="text-cyan-400 text-sm mb-10 inline-block">
+        ← Back to Blog
+      </a>
+      <h1 class="text-4xl md:text-5xl font-extrabold mt-3 mb-6">
+        Frontend Systems Thinking
+      </h1>
+      <span class="text-200 font-bold tracking-wider text-cyan-400">
+        Engineering
+      </span>
+
+      <p class="text-gray-400 mb-10">By Ezuka Success • 4 min read</p>
+
+      <div class="hero mb-10">
+        <img
+          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c"
+          class="w-full h-[300px] object-cover"
+        />
+      </div>
+
+      <p class="text-gray-300 mb-6">
+        Frontend development is often associated with visuals and animations.
+        But great frontend engineering goes deeper than what users see.
+      </p>
+
+      <p class="text-gray-300 mb-6">
+        Systems thinking focuses on building scalable structures that make
+        interfaces easier to maintain and expand as products grow.
+      </p>
+
+      <div class="border-l-4 border-cyan-500 pl-6 my-10 italic text-gray-300">
+        Great frontend architecture is invisible to users but essential for
+        teams.
+      </div>
+
+      <h2
+        class="text-2xl font-semibold mt-12 mb-4 bg-gradient-to-r from-cyan-400 to-cyan-400 bg-clip-text text-transparent"
+      >
+        Reusable Components
+      </h2>
+
+      <p class="text-gray-300 mb-6">
+        Instead of building new UI elements repeatedly, systems thinking
+        encourages reusable components that can be shared across different pages
+        and features.
+      </p>
+
+      <h2
+        class="text-2xl font-semibold mt-12 mb-4 bg-gradient-to-r from-cyan-400 to-cyan-400 bg-clip-text text-transparent"
+      >
+        Consistency in Interfaces
+      </h2>
+
+      <p class="text-gray-300 mb-6">
+        Consistent UI patterns improve usability and speed up development. Users
+        learn how an interface works faster when patterns remain predictable.
+      </p>
+
+      <h2
+        class="text-2xl font-semibold mt-12 mb-4 bg-gradient-to-r from-cyan-400 to-cyan-400 bg-clip-text text-transparent"
+      >
+        Scalability Over Flashiness
+      </h2>
+
+      <p class="text-gray-300 mb-6">
+        Animations and visual effects can enhance interfaces, but scalable
+        architecture ensures that products remain maintainable as they evolve.
+      </p>
+    </section>
+
+    <script>
+      window.onscroll = function () {
+        let winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        let height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+      };
+    </script>
+  </body>
+</html>

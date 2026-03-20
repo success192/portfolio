@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills | Ezuka Success Ifeanyichukwu</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0a0a0f;
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #00f5d4, #0ea5e9, #22d3ee);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 6s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .glass {
+        background: rgba(14, 165, 233, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 245, 212, 0.2);
+      }
+    </style>
+  </head>
+
+  <body class="text-white">
+    <!-- NAVBAR -->
+    <div class="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+      <div class="glass px-8 py-3 rounded-full flex gap-8 text-sm font-medium">
+        <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+        <a href="work.html" class="hover:text-cyan-400 transition">Work</a>
+
+        <a href="about.html" class="hover:text-cyan-400 transition">About</a>
+        <a href="blog.html" class="hover:text-cyan-400 transition">Blog</a>
+        <a href="contact.html" class="hover:text-cyan-400 transition"
+          >Contact</a
+        >
+      </div>
+    </div>
+
+    <section class="pt-40 px-8 md:px-20 max-w-6xl mx-auto">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-16">
+        Skills & <span class="gradient-text">Expertise.</span>
+      </h1>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- FRONTEND -->
+        <div class="glass p-10 rounded-2xl">
+          <h2 class="text-2xl font-semibold mb-6">Frontend Engineering</h2>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >HTML</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >CSS</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >JavaScript</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >React</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Next.js</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >TypeScript</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Tailwind CSS</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >REST APIs</span
+            >
+          </div>
+        </div>
+
+        <!-- UI/UX -->
+        <div class="glass p-10 rounded-2xl">
+          <h2 class="text-2xl font-semibold mb-6">UI/UX & Product Design</h2>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Figma</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Wireframing</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Prototyping</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Design Systems</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >User Research</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Interaction Design</span
+            >
+          </div>
+        </div>
+
+        <!-- WEB3 -->
+        <div class="glass p-10 rounded-2xl md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-6">Web3 Development</h2>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Solidity</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Ethers.js</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Web3.js</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Smart Contracts</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Wallet Integration</span
+            >
+            <span class="px-4 py-2 bg-cyan-600/20 rounded-full text-sm"
+              >Hardhat</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center text-sm text-gray-500 py-16">
+      © 2026 Ezuka Success Ifeanyichukwu.
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

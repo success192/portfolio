@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naijaaets - Food Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link
+      id="heading-font-link"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      id="body-font-link"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ["var(--font-heading-name)", "sans-serif"],
+              body: ["var(--font-body-name)", "sans-serif"],
+            },
+            colors: {
+              primary: {
+                50: "#fff7ed",
+                100: "#ffedd5",
+                200: "#fed7aa",
+                300: "#fdba74",
+                400: "#fb923c",
+                500: "#f97316",
+                600: "#ea580c",
+                700: "#c2410c",
+                800: "#9a3412",
+                900: "#7c2d12",
+              },
+              secondary: {
+                50: "#f0fdf4",
+                100: "#dcfce7",
+                200: "#bbf7d0",
+                300: "#86efac",
+                400: "#4ade80",
+                500: "#22c55e",
+                600: "#16a34a",
+                700: "#15803d",
+                800: "#166534",
+                900: "#14532d",
+              },
+              dark: {
+                bg: "#0f172a",
+                surface: "#1e293b",
+                border: "#334155",
+              },
+            },
+            spacing: {
+              base: "var(--space-base)",
+            },
+            borderRadius: {
+              small: "var(--radius-small)",
+              large: "var(--radius-large)",
+            },
+            boxShadow: {
+              custom: "var(--shadow-custom)",
+              "custom-hover": "var(--shadow-custom-hover)",
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-out",
+              "slide-up": "slideUp 0.5s ease-out",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        /* Typography */
+        --font-heading-name: "Poppins";
+        --font-body-name: "Inter";
+        --font-heading: "Poppins", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --letter-spacing-heading: -0.02em;
+        --letter-spacing-body: 0px;
+
+        /* Spacing */
+        --space-base: 1rem;
+
+        /* Borders */
+        --radius-small: 0.5rem;
+        --radius-large: 1rem;
+        --border-width: 1px;
+
+        /* Shadows */
+        --shadow-color: 20 20 20;
+        --shadow-offset-x: 0px;
+        --shadow-offset-y: 4px;
+        --shadow-blur: 6px;
+        --shadow-spread: -1px;
+        --shadow-opacity: 0.1;
+        --shadow-custom:
+          0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-custom-hover:
+          0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      }
+
+      /* Hide scrollbar for horizontal scrolling areas */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* View Transition Logic */
+      .view-section {
+        display: none;
+        animation: fadeIn 0.4s ease-in-out;
+      }
+      .view-section.active {
+        display: block;
+      }
+
+      /* Loader */
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #ea580c;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="font-body bg-gray-50 text-gray-900 dark:bg-dark-bg dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col"
+    style="height: auto; min-height: 100%"
+  >
+    <!-- SPLASH SCREEN -->
+    <div
+      id="splash-view"
+      class="view-section active fixed inset-0 z-50 bg-primary-600 flex flex-col items-center justify-center text-white"
+    >
+      <div class="animate-pulse-slow mb-4">
+        <i data-lucide="utensils-crossed" class="w-20 h-20"></i>
+      </div>
+      <h1 class="font-heading text-4xl font-bold tracking-tight mb-2">
+        Naijaaets
+      </h1>
+      <p class="font-body text-primary-100">Taste of home, delivered.</p>
+    </div>
+
+    <!-- LANDING PAGE -->
+    <div id="landing-view" class="view-section min-h-screen flex flex-col">
+      <nav
+        class="absolute top-0 w-full p-6 flex justify-between items-center z-10"
+      >
+        <div class="flex items-center gap-2">
+          <div class="bg-primary-600 p-2 rounded-lg">
+            <i data-lucide="utensils" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="font-heading font-bold text-xl dark:text-white"
+            >Naijaaets</span
+          >
+        </div>
+        <button
+          onclick="navigateTo('auth')"
+          class="font-heading font-semibold text-primary-600 hover:text-primary-700 dark:text-primary-400"
+        >
+          Login
+        </button>
+      </nav>
+
+      <main
+        class="flex-1 flex flex-col justify-center items-center px-6 text-center pt-20 pb-10"
+      >
+        <div
+          class="relative w-full max-w-md aspect-square mb-8 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Delicious Food"
+            class="object-cover w-full h-full"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+          ></div>
+        </div>
+
+        <h1
+          class="font-heading text-4xl md:text-5xl font-bold mb-4 leading-tight"
+        >
+          Delicious Food <br />
+          <span class="text-primary-600">Delivered To You</span>
+        </h1>
+
+        <p class="font-body text-gray-500 dark:text-gray-400 mb-8 max-w-md">
+          Order your favorite Nigerian dishes and international cuisines from
+          the best restaurants near you.
+        </p>
+
+        <button
+          onclick="navigateTo('auth')"
+          class="w-full max-w-xs bg-primary-600 hover:bg-primary-700 text-white font-heading font-semibold py-4 px-8 rounded-large shadow-custom hover:shadow-custom-hover transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+        >
+          Get Started
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+      </main>
+    </div>
+
+    <!-- AUTH PAGE -->
+    <div
+      id="auth-view"
+      class="view-section min-h-screen bg-white dark:bg-dark-bg"
+    >
+      <div
+        class="h-48 bg-primary-600 rounded-b-[3rem] relative flex items-center justify-center mb-10"
+      >
+        <button
+          onclick="navigateTo('landing')"
+          class="absolute top-6 left-6 text-white"
+        >
+          <i data-lucide="arrow-left" class="w-6 h-6"></i>
+        </button>
+        <h2 class="font-heading text-3xl font-bold text-white mt-4">
+          Welcome Back
+        </h2>
+      </div>
+
+      <div class="px-6 max-w-md mx-auto">
+        <div
+          class="flex gap-4 mb-8 border-b border-gray-200 dark:border-gray-700"
+        >
+          <button
+            class="flex-1 pb-3 font-heading font-semibold text-primary-600 border-b-2 border-primary-600"
+          >
+            Login
+          </button>
+          <button
+            class="flex-1 pb-3 font-heading font-semibold text-gray-400 hover:text-gray-600"
+          >
+            Sign Up
+          </button>
+        </div>
+
+        <form
+          onsubmit="
+            event.preventDefault();
+            navigateTo('dashboard');
+          "
+          class="space-y-6"
+        >
+          <div>
+            <label
+              class="block font-heading text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >Email Address</label
+            >
+            <div class="relative">
+              <i
+                data-lucide="mail"
+                class="absolute left-4 top-3.5 w-5 h-5 text-gray-400"
+              ></i>
+              <input
+                type="email"
+                placeholder="hello@naijaaets.com"
+                class="w-full pl-12 pr-4 py-3 rounded-large border border-gray-200 dark:border-gray-700 dark:bg-dark-surface focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              class="block font-heading text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >Password</label
+            >
+            <div class="relative">
+              <i
+                data-lucide="lock"
+                class="absolute left-4 top-3.5 w-5 h-5 text-gray-400"
+              ></i>
+              <input
+                type="password"
+                placeholder="••••••••"
+                class="w-full pl-12 pr-4 py-3 rounded-large border border-gray-200 dark:border-gray-700 dark:bg-dark-surface focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
+                required
+              />
+            </div>
+            <div class="flex justify-end mt-2">
+              <a href="#" class="text-xs text-primary-600 font-medium"
+                >Forgot Password?</a
+              >
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-primary-600 hover:bg-primary-700 text-white font-heading font-bold py-4 rounded-large shadow-custom hover:shadow-custom-hover transition-all"
+          >
+            Login to Account
+          </button>
+        </form>
+
+        <div class="mt-8 text-center">
+          <p class="text-sm text-gray-500">Or continue with</p>
+          <div class="flex justify-center gap-4 mt-4">
+            <button
+              class="p-3 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                alt="Google"
+                class="w-6 h-6"
+              />
+            </button>
+            <button
+              class="p-3 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg"
+                alt="Apple"
+                class="w-6 h-6 dark:invert"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN APP SHELL (Dashboard, Search, Cart, Profile) -->
+    <div id="app-shell" class="view-section hidden min-h-screen pb-20">
+      <!-- Top Header -->
+      <header
+        class="sticky top-0 z-30 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 px-4 py-3 flex items-center justify-between"
+      >
+        <div class="flex flex-col">
+          <span class="text-xs text-gray-500 dark:text-gray-400"
+            >Delivering to</span
+          >
+          <div class="flex items-center gap-1 cursor-pointer">
+            <span class="font-heading font-bold text-primary-600"
+              >Lagos, Nigeria</span
+            >
+            <i data-lucide="chevron-down" class="w-4 h-4 text-primary-600"></i>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            onclick="toggleDarkMode()"
+            class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
+          >
+            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+          </button>
+          <button
+            class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 relative"
+          >
+            <i data-lucide="bell" class="w-5 h-5"></i>
+            <span
+              class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-dark-bg"
+            ></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- DASHBOARD CONTENT -->
+      <div id="dashboard-content" class="app-content active px-4 pt-4">
+        <!-- Search -->
+        <div class="relative mb-6">
+          <i
+            data-lucide="search"
+            class="absolute left-4 top-3.5 w-5 h-5 text-gray-400"
+          ></i>
+          <input
+            type="text"
+            placeholder="Find food or restaurants..."
+            class="w-full pl-12 pr-4 py-3 rounded-large bg-gray-100 dark:bg-dark-surface border-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
+          />
+          <button
+            class="absolute right-3 top-2.5 p-1 bg-white dark:bg-gray-700 rounded-md shadow-sm"
+          >
+            <i
+              data-lucide="sliders-horizontal"
+              class="w-4 h-4 text-primary-600"
+            ></i>
+          </button>
+        </div>
+
+        <!-- Categories -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="font-heading font-bold text-lg">Categories</h3>
+            <button class="text-primary-600 text-sm font-medium">
+              See All
+            </button>
+          </div>
+          <div
+            class="flex gap-4 overflow-x-auto no-scrollbar pb-2"
+            id="categories-container"
+          >
+            <!-- Categories injected by JS -->
+          </div>
+        </div>
+
+        <!-- Popular Restaurants -->
+        <div class="mb-24">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="font-heading font-bold text-lg">Popular Near You</h3>
+            <button class="text-primary-600 text-sm font-medium">Filter</button>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            id="restaurants-container"
+          >
+            <!-- Restaurants injected by JS -->
+          </div>
+          <div class="mt-6 text-center">
+            <button
+              class="px-6 py-2 border border-gray-300 dark:border-gray-700 rounded-full text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            >
+              Load More Restaurants
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACKING CONTENT -->
+      <div id="tracking-content" class="app-content hidden px-4 pt-4">
+        <h2 class="font-heading text-2xl font-bold mb-6">Track Order</h2>
+
+        <!-- Map Placeholder -->
+        <div
+          class="w-full h-64 bg-gray-200 dark:bg-gray-800 rounded-large mb-6 relative overflow-hidden"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            class="w-full h-full object-cover opacity-50"
+            alt="Map"
+          />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div
+              class="bg-white dark:bg-dark-surface p-3 rounded-full shadow-lg animate-bounce"
+            >
+              <i data-lucide="map-pin" class="w-6 h-6 text-primary-600"></i>
+            </div>
+          </div>
+          <div
+            class="absolute bottom-4 left-4 right-4 bg-white dark:bg-dark-surface p-4 rounded-large shadow-lg flex items-center gap-4"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+              class="w-12 h-12 rounded-full object-cover"
+              alt="Driver"
+            />
+            <div class="flex-1">
+              <h4 class="font-heading font-bold text-sm">Emmanuel Okafor</h4>
+              <p class="text-xs text-gray-500">Your Rider • 4.9 ⭐</p>
+            </div>
+            <button class="p-2 bg-primary-100 text-primary-600 rounded-full">
+              <i data-lucide="phone" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Status Steps -->
+        <div
+          class="bg-white dark:bg-dark-surface rounded-large p-6 shadow-sm border border-gray-100 dark:border-gray-800"
+        >
+          <div class="flex justify-between items-end mb-6">
+            <div>
+              <p class="text-xs text-gray-500 mb-1">Estimated Arrival</p>
+              <h3 class="font-heading text-2xl font-bold">
+                15-20 <span class="text-sm font-normal text-gray-500">min</span>
+              </h3>
+            </div>
+            <span
+              class="text-xs font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded"
+              >#ORD-2938</span
+            >
+          </div>
+
+          <div class="space-y-6 relative">
+            <div
+              class="absolute left-[11px] top-2 bottom-2 w-0.5 bg-gray-200 dark:bg-gray-700"
+            ></div>
+
+            <div class="relative flex gap-4">
+              <div
+                class="w-6 h-6 rounded-full bg-primary-600 border-4 border-white dark:border-dark-surface z-10"
+              ></div>
+              <div>
+                <h4 class="font-heading font-bold text-sm">Order Picked Up</h4>
+                <p class="text-xs text-gray-500">12:42 PM</p>
+              </div>
+            </div>
+            <div class="relative flex gap-4">
+              <div
+                class="w-6 h-6 rounded-full bg-primary-600 border-4 border-white dark:border-dark-surface z-10"
+              ></div>
+              <div>
+                <h4 class="font-heading font-bold text-sm">Order Prepared</h4>
+                <p class="text-xs text-gray-500">12:30 PM</p>
+              </div>
+            </div>
+            <div class="relative flex gap-4 opacity-50">
+              <div
+                class="w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-dark-surface z-10"
+              ></div>
+              <div>
+                <h4 class="font-heading font-bold text-sm">Order Confirmed</h4>
+                <p class="text-xs text-gray-500">12:25 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE CONTENT -->
+      <div id="profile-content" class="app-content hidden px-4 pt-4">
+        <h2 class="font-heading text-2xl font-bold mb-6">My Profile</h2>
+
+        <div class="flex items-center gap-4 mb-8">
+          <div
+            class="w-20 h-20 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold text-2xl"
+          >
+            JD
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-lg">John Doe</h3>
+            <p class="text-sm text-gray-500">john.doe@example.com</p>
+            <button class="text-xs text-primary-600 font-medium mt-1">
+              Edit Profile
+            </button>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <button
+            class="w-full flex items-center justify-between p-4 bg-white dark:bg-dark-surface rounded-large shadow-sm border border-gray-100 dark:border-gray-800"
+          >
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                <i data-lucide="credit-card" class="w-5 h-5"></i>
+              </div>
+              <span class="font-medium">Payment Methods</span>
+            </div>
+            <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+          </button>
+          <button
+            class="w-full flex items-center justify-between p-4 bg-white dark:bg-dark-surface rounded-large shadow-sm border border-gray-100 dark:border-gray-800"
+          >
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-orange-50 text-orange-600 rounded-lg">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <span class="font-medium">Saved Addresses</span>
+            </div>
+            <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+          </button>
+          <button
+            class="w-full flex items-center justify-between p-4 bg-white dark:bg-dark-surface rounded-large shadow-sm border border-gray-100 dark:border-gray-800"
+          >
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-green-50 text-green-600 rounded-lg">
+                <i data-lucide="history" class="w-5 h-5"></i>
+              </div>
+              <span class="font-medium">Order History</span>
+            </div>
+            <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+          </button>
+          <button
+            class="w-full flex items-center justify-between p-4 bg-white dark:bg-dark-surface rounded-large shadow-sm border border-gray-100 dark:border-gray-800"
+          >
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-purple-50 text-purple-600 rounded-lg">
+                <i data-lucide="settings" class="w-5 h-5"></i>
+              </div>
+              <span class="font-medium">Settings</span>
+            </div>
+            <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+          </button>
+        </div>
+
+        <button
+          onclick="navigateTo('landing')"
+          class="w-full mt-8 p-4 text-red-500 font-medium bg-red-50 dark:bg-red-900/20 rounded-large"
+        >
+          Log Out
+        </button>
+      </div>
+
+      <!-- CART CONTENT -->
+      <div id="cart-content" class="app-content hidden px-4 pt-4">
+        <h2 class="font-heading text-2xl font-bold mb-6">My Cart</h2>
+
+        <div class="space-y-4 mb-8">
+          <!-- Cart Item 1 -->
+          <div
+            class="flex gap-4 bg-white dark:bg-dark-surface p-3 rounded-large shadow-sm border border-gray-100 dark:border-gray-800"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+              class="w-20 h-20 rounded-lg object-cover"
+              alt="Pizza"
+            />
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="font-heading font-bold text-sm">
+                  Suya Pizza (Large)
+                </h4>
+                <p class="text-xs text-gray-500">Extra spicy, No onions</p>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-primary-600">₦4,500</span>
+                <div
+                  class="flex items-center gap-3 bg-gray-100 dark:bg-gray-800 rounded-full px-2 py-1"
+                >
+                  <button class="text-gray-500 hover:text-primary-600">
+                    <i data-lucide="minus" class="w-4 h-4"></i>
+                  </button>
+                  <span class="text-sm font-medium">1</span>
+                  <button class="text-gray-500 hover:text-primary-600">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart Item 2 -->
+          <div
+            class="flex gap-4 bg-white dark:bg-dark-surface p-3 rounded-large shadow-sm border border-gray-100 dark:border-gray-800"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+              class="w-20 h-20 rounded-lg object-cover"
+              alt="Salad"
+            />
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="font-heading font-bold text-sm">
+                  Jollof Rice Combo
+                </h4>
+                <p class="text-xs text-gray-500">With Plantain & Chicken</p>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-primary-600">₦2,800</span>
+                <div
+                  class="flex items-center gap-3 bg-gray-100 dark:bg-gray-800 rounded-full px-2 py-1"
+                >
+                  <button class="text-gray-500 hover:text-primary-600">
+                    <i data-lucide="minus" class="w-4 h-4"></i>
+                  </button>
+                  <span class="text-sm font-medium">2</span>
+                  <button class="text-gray-500 hover:text-primary-600">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-white dark:bg-dark-surface p-4 rounded-large shadow-sm border border-gray-100 dark:border-gray-800 mb-24"
+        >
+          <div class="flex justify-between mb-2 text-sm">
+            <span class="text-gray-500">Subtotal</span>
+            <span class="font-medium">₦10,100</span>
+          </div>
+          <div class="flex justify-between mb-2 text-sm">
+            <span class="text-gray-500">Delivery Fee</span>
+            <span class="font-medium">₦1,200</span>
+          </div>
+          <div class="flex justify-between mb-4 text-sm">
+            <span class="text-gray-500">Discount</span>
+            <span class="font-medium text-green-500">-₦500</span>
+          </div>
+          <div
+            class="border-t border-gray-100 dark:border-gray-700 pt-4 flex justify-between items-center"
+          >
+            <span class="font-heading font-bold text-lg">Total</span>
+            <span class="font-heading font-bold text-xl text-primary-600"
+              >₦10,800</span
+            >
+          </div>
+          <button
+            onclick="switchTab('tracking-content')"
+            class="w-full mt-6 bg-primary-600 hover:bg-primary-700 text-white font-heading font-bold py-4 rounded-large shadow-custom hover:shadow-custom-hover transition-all"
+          >
+            Checkout Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <nav
+        class="fixed bottom-0 w-full bg-white dark:bg-dark-surface border-t border-gray-200 dark:border-gray-800 px-6 py-3 flex justify-between items-center z-40"
+      >
+        <button
+          onclick="switchTab('dashboard-content')"
+          class="nav-btn active flex flex-col items-center gap-1 text-primary-600"
+        >
+          <i data-lucide="home" class="w-6 h-6"></i>
+          <span class="text-[10px] font-medium">Home</span>
+        </button>
+        <button
+          onclick="switchTab('tracking-content')"
+          class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-primary-600 transition-colors"
+        >
+          <i data-lucide="map" class="w-6 h-6"></i>
+          <span class="text-[10px] font-medium">Track</span>
+        </button>
+        <div class="relative -top-8">
+          <button
+            onclick="switchTab('cart-content')"
+            class="w-14 h-14 bg-primary-600 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-105 transition-transform"
+          >
+            <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+            <span
+              class="absolute top-0 right-0 w-4 h-4 bg-red-500 rounded-full text-[10px] flex items-center justify-center border-2 border-white dark:border-dark-bg"
+              >3</span
+            >
+          </button>
+        </div>
+        <button
+          class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-primary-600 transition-colors"
+        >
+          <i data-lucide="heart" class="w-6 h-6"></i>
+          <span class="text-[10px] font-medium">Saved</span>
+        </button>
+        <button
+          onclick="switchTab('profile-content')"
+          class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-primary-600 transition-colors"
+        >
+          <i data-lucide="user" class="w-6 h-6"></i>
+          <span class="text-[10px] font-medium">Profile</span>
+        </button>
+      </nav>
+    </div>
+
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // Data Generation
+      const categories = [
+        { name: "Rice", icon: "🍚" },
+        { name: "Swallow", icon: "🥘" },
+        { name: "Pizza", icon: "🍕" },
+        { name: "Burger", icon: "🍔" },
+        { name: "Drinks", icon: "🥤" },
+        { name: "Snacks", icon: "🍿" },
+        { name: "Pasta", icon: "🍝" },
+      ];
+
+      const restaurants = [
+        {
+          name: "Mama Nkechi's Kitchen",
+          rating: 4.8,
+          time: "20-30 min",
+          image:
+            "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          tags: ["Nigerian", "Local"],
+        },
+        {
+          name: "Chicken Republic",
+          rating: 4.5,
+          time: "15-25 min",
+          image:
+            "https://images.unsplash.com/photo-1562967960-f55430ae51e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          tags: ["Fast Food", "Chicken"],
+        },
+        {
+          name: "Domino's Pizza",
+          rating: 4.7,
+          time: "30-45 min",
+          image:
+            "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          tags: ["Pizza", "International"],
+        },
+        {
+          name: "The Place",
+          rating: 4.6,
+          time: "25-40 min",
+          image:
+            "https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          tags: ["Nigerian", "Rice"],
+        },
+        {
+          name: "Ocean Basket",
+          rating: 4.9,
+          time: "40-50 min",
+          image:
+            "https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          tags: ["Seafood", "Fancy"],
+        },
+        {
+          name: "Kilimanjaro",
+          rating: 4.4,
+          time: "20-35 min",
+          image:
+            "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          tags: ["Nigerian", "Fast Food"],
+        },
+      ];
+
+      // Generate 30 restaurants by repeating the base list
+      const fullRestaurantList = [];
+      for (let i = 0; i < 5; i++) {
+        restaurants.forEach((r) => fullRestaurantList.push(r));
+      }
+
+      // Render Categories
+      const catContainer = document.getElementById("categories-container");
+      categories.forEach((cat) => {
+        const el = document.createElement("div");
+        el.className =
+          "flex flex-col items-center gap-2 min-w-[80px] cursor-pointer group";
+        el.innerHTML = `
+                <div class="w-16 h-16 rounded-2xl bg-white dark:bg-dark-surface shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-center text-2xl group-hover:border-primary-500 group-hover:shadow-md transition-all">
+                    ${cat.icon}
+                </div>
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary-600">${cat.name}</span>
+            `;
+        catContainer.appendChild(el);
+      });
+
+      // Render Restaurants
+      const restContainer = document.getElementById("restaurants-container");
+      fullRestaurantList.forEach((rest, index) => {
+        const el = document.createElement("div");
+        el.className =
+          "bg-white dark:bg-dark-surface rounded-large overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition-all cursor-pointer group";
+        el.innerHTML = `
+                <div class="relative h-40 overflow-hidden">
+                    <img src="${rest.image}" alt="${rest.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-3 right-3 bg-white dark:bg-dark-surface px-2 py-1 rounded-lg text-xs font-bold shadow-sm flex items-center gap-1">
+                        <span class="text-yellow-500">★</span> ${rest.rating}
+                    </div>
+                    <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-medium">
+                        ${rest.time}
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h4 class="font-heading font-bold text-lg mb-1 truncate">${rest.name} ${index > 5 ? `(${index})` : ""}</h4>
+                    <div class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                        ${rest.tags.map((tag) => `<span class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded text-gray-600 dark:text-gray-400">${tag}</span>`).join("")}
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-3">
+                        <span class="text-xs text-gray-400">Delivery: ₦500</span>
+                        <button class="w-8 h-8 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        restContainer.appendChild(el);
+      });
+      lucide.createIcons(); // Re-init icons for new elements
+
+      // Navigation Logic
+      function navigateTo(viewId) {
+        document
+          .querySelectorAll(".view-section")
+          .forEach((el) => el.classList.remove("active"));
+
+        if (viewId === "dashboard") {
+          document.getElementById("app-shell").classList.remove("hidden");
+          document.getElementById("app-shell").classList.add("active");
+          switchTab("dashboard-content");
+        } else if (viewId === "auth" || viewId === "landing") {
+          document.getElementById("app-shell").classList.add("hidden");
+          document.getElementById("app-shell").classList.remove("active");
+          document.getElementById(viewId + "-view").classList.add("active");
+        }
+      }
+
+      function switchTab(tabId) {
+        // Hide all app contents
+        document.querySelectorAll(".app-content").forEach((el) => {
+          el.classList.add("hidden");
+          el.classList.remove("active");
+        });
+        // Show selected
+        const target = document.getElementById(tabId);
+        target.classList.remove("hidden");
+        target.classList.add("active");
+
+        // Update nav buttons
+        document.querySelectorAll(".nav-btn").forEach((btn) => {
+          btn.classList.remove("text-primary-600");
+          btn.classList.add("text-gray-400");
+          if (btn.getAttribute("onclick") === `switchTab('${tabId}')`) {
+            btn.classList.add("text-primary-600");
+            btn.classList.remove("text-gray-400");
+          }
+        });
+
+        window.scrollTo(0, 0);
+      }
+
+      function toggleDarkMode() {
+        document.documentElement.classList.toggle("dark");
+      }
+
+      // Splash Screen Timer
+      setTimeout(() => {
+        document.getElementById("splash-view").style.opacity = "0";
+        setTimeout(() => {
+          document.getElementById("splash-view").style.display = "none";
+          // Normally go to landing, but for demo we can stay on landing
+        }, 500);
+      }, 2500);
+    </script>
+  </body>
+</html>
