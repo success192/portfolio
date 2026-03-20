@@ -64,18 +64,37 @@
   <body class="bg-[#0c111b] text-white min-h-screen">
     <!-- NAVBAR -->
     <div
-      class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[95%] sm:max-w-fit px-2 sm:px-0"
+      class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[95%] sm:max-w-5xl px-2 sm:px-0"
     >
       <div
-        class="glass px-5 sm:px-8 py-2.5 sm:py-3 rounded-full flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm font-medium"
+        class="glass px-5 sm:px-8 py-2.5 sm:py-3 rounded-full flex items-center justify-between gap-4 sm:gap-8 text-xs sm:text-sm font-medium"
       >
-        <a href="work.html" class="hover:text-cyan-400 transition">Work</a>
-        <a href="skills.html" class="hover:text-cyan-400 transition">Skills</a>
-        <a href="about.html" class="hover:text-cyan-400 transition">About</a>
-        <a href="blog.html" class="hover:text-cyan-400 transition">Blog</a>
-        <a href="contact.html" class="hover:text-cyan-400 transition"
-          >Contact</a
+        <!-- Left side: links -->
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-8">
+          <a href="work.html" class="hover:text-cyan-400 transition">Work</a>
+          <a href="skills.html" class="hover:text-cyan-400 transition"
+            >Skills</a
+          >
+          <a href="about.html" class="hover:text-cyan-400 transition">About</a>
+          <a href="blog.html" class="hover:text-cyan-400 transition">Blog</a>
+          <a href="contact.html" class="hover:text-cyan-400 transition"
+            >Contact</a
+          >
+        </div>
+
+        <!-- Right side: profile picture -->
+        <button
+          type="button"
+          id="profileBtn"
+          class="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-cyan-400/40 hover:border-cyan-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+          aria-label="Open profile picture"
         >
+          <img
+            src="assets/images/profile.jpg.jpg"
+            alt="Ezuka Success Ifeanyichukwu"
+            class="w-full h-full object-cover"
+          />
+        </button>
       </div>
     </div>
 
@@ -162,5 +181,28 @@ const developer = {
     </section>
 
     <script src="script.js"></script>
+    <!-- Profile Modal -->
+    <div
+      id="profileModal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-[9999] transition-opacity duration-300"
+    >
+      <div class="relative max-w-[90vw] max-h-[90vh] p-4">
+        <!-- Close button -->
+        <button
+          id="closeModal"
+          class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-gray-900/80 text-white flex items-center justify-center text-xl hover:bg-gray-800 transition"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <!-- Enlarged image -->
+        <img
+          src="assets/images/profile.jpg.jpg"
+          alt="Ezuka Success Ifeanyichukwu"
+          class="w-auto max-w-full max-h-[85vh] rounded-2xl shadow-2xl border border-cyan-500/30 object-contain"
+        />
+      </div>
+    </div>
   </body>
 </html>

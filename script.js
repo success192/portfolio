@@ -149,3 +149,40 @@ document
 if ("ontouchstart" in window) {
   document.body.classList.add("touch-device");
 }
+// Profile Modal Toggle
+const profileBtn = document.getElementById("profileBtn");
+const profileModal = document.getElementById("profileModal");
+const closeModal = document.getElementById("closeModal");
+
+if (profileBtn && profileModal) {
+  profileBtn.addEventListener("click", () => {
+    profileModal.classList.remove("hidden");
+    profileModal.classList.add("flex");
+    // Optional: slight zoom-in feel
+    setTimeout(() => {
+      profileModal.style.opacity = "1";
+    }, 10);
+  });
+
+  closeModal.addEventListener("click", () => {
+    profileModal.style.opacity = "0";
+    setTimeout(() => {
+      profileModal.classList.remove("flex");
+      profileModal.classList.add("hidden");
+    }, 300);
+  });
+
+  // Close when clicking outside the image
+  profileModal.addEventListener("click", (e) => {
+    if (e.target === profileModal) {
+      closeModal.click();
+    }
+  });
+
+  // Close with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !profileModal.classList.contains("hidden")) {
+      closeModal.click();
+    }
+  });
+}
